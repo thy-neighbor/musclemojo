@@ -65,14 +65,14 @@ function generateMuscleList(results){
     if(results[i].is_front){
       htmlCodeToAppendFront.push(`
       <li id=${results[i].id}>
-        <input type="checkbox" class="styled-checkbox" data-id="${results[i].id}" name="muscle" value="${results[i].name}" >
+        <input type="checkbox" class="styled-checkbox" id="${results[i].name}" data-id="${results[i].id}" name="muscle" value="${results[i].name}" >
         <label for="${results[i].name}">${results[i].name}</label>
       </li>`);
 
     }else if(!results[i].is_front){
       htmlCodeToAppendBack.push(`
       <li id=${results[i].id}>
-        <input type="checkbox" class="styled-checkbox" data-id="${results[i].id}" name="muscle" value="${results[i].name}" >
+        <input type="checkbox" class="styled-checkbox" id="${results[i].name}" data-id="${results[i].id}" name="muscle" value="${results[i].name}" >
         <label for="${results[i].name}">${results[i].name}</label>
       </li>`);
 

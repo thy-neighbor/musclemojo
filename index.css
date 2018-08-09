@@ -1,12 +1,15 @@
+*{
+  font-family: 'Roboto', sans-serif;
+
+}
+
 ul{
     list-style-type: none;
   }
 
-  /*
-li[value='1']:hover{
-    color:blue;
-  }
-  */
+li{
+  padding:5px;
+}
 
 #muscle-image{
     background-image: url(https://wger.de/static/images/muscles/main/muscle-4.svg), 
@@ -20,9 +23,28 @@ li[value='1']:hover{
     top: 40px;
 }
 
-.red{
+li.exercise.red{
   color:red;
 }
+
+li.exercise{
+  color:#140c7e;
+  font:14px/20px 'Open Sans', Arial, sans-serif;
+}
+
+li.exercise:hover{
+  text-decoration: underline;
+}
+
+/*li.red:first-child:before {
+    content: "best matches";
+    display: block;
+}
+
+li.red:last-child:after {
+    content: "the rest";
+    display: block;
+}*/
 
 #header-col > h1{
   margin:auto;
