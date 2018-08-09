@@ -236,7 +236,7 @@ function onClickExercise(){   //nodal comes up
     let exerciseName=$(this).text();
     let description=$(this).data("description");
     console.log($(this).text());
-    $.get(`http://api.giphy.com/v1/gifs/search?q=${$(this).text()}&tag=workout&api_key=${giphyApiKey}&limit=5`,function(result){
+    $.get(`https://api.giphy.com/v1/gifs/search?q=${$(this).text()}&tag=workout&api_key=${giphyApiKey}&limit=5`,function(result){
       $('#exercise-page .giph').html(`<iframe src="${result.data[0].embed_url}" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`);
       $('#exercise-page .description').html(`
       <h1>${exerciseName}</h1>
@@ -245,7 +245,7 @@ function onClickExercise(){   //nodal comes up
       console.log(result);
       renderExercisePage();
     });
-    //$.get("http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5");
+    
   });
 
 }
