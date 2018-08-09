@@ -5,7 +5,7 @@ const wgerExerciseEndpoint='https://wger.de/api/v2/exercise/';
 const wgerMuscleEndpoint='https://wger.de/api/v2/muscle/';
 //GIPHY
 const giphyApiKey='UnCdyM9ShwqrX4qAOYTxTxf4UNMlealT';
-const giphyEndpoint='http://api.giphy.com/v1/gifs/';
+const giphyEndpoint='https://api.giphy.com/v1/gifs/';
 
 function mainFunction(){
 
@@ -208,12 +208,6 @@ function renderExercises(ratingArr,maxMuscleNum){
   </div>`
   );
 
-  //make format of array ratingArr[i]={rating:2,exercise:exerciseArr[i]}
-  /*
-  for(let i=0;i<ratingArr.length;i++){
-    ratingArr[i]={rating:ratingArr[i], exercise:exerciseArr[i]};
-  }
-  */
 
   ratingArr.sort(function(a,b){
     return(-(a.rating-b.rating));//descending order
@@ -237,7 +231,7 @@ function renderExercises(ratingArr,maxMuscleNum){
 
 }
 
-function onClickExercise(){
+function onClickExercise(){   //nodal comes up
   $('main').on('click','.exercise',function(){
     let exerciseName=$(this).text();
     let description=$(this).data("description");
