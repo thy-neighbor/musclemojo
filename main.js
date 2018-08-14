@@ -9,20 +9,21 @@ const giphyEndpoint='https://api.giphy.com/v1/gifs/';
 
 function mainFunction(){
 
-  generatePageOne();
+  generatePageOne();    //generates the intro page
   //generatePageTwo();  
 
   onClickSubmit(); //random testing button to get data and understand it
 
-  onClickExercise();
+  onClickExercise();  //event when an exercise is clicked, pop out screen
 
-  onClickExitExercise();
+  onClickExitExercise();  //exit pop out screen
 
-  onClickStart();
+  onClickStart(); //start button on page one, simple navigation
 
 }
 $(mainFunction);
 
+//generates the intro page
 function generatePageOne(){
   $('#row-one').html(`
     <div id=intro class="col-12">
@@ -38,9 +39,18 @@ function generatePageOne(){
     </button>
     </div>
     `);
-
 }
 
+//start button on page one, simple navigation
+function onClickStart(){
+  $('main').on('click','#start-button',function(){
+    console.log('Start Button Pressed');
+    generatePageTwo();
+  });
+}
+
+
+//generates the page two
 function generatePageTwo(){
   $('#intro').remove();
   $('#row-one').html(`
@@ -52,13 +62,7 @@ function generatePageTwo(){
   //generateMuscleList(data.results);  
 }
 
-function onClickStart(){
-  $('main').on('click','#start-button',function(){
-    console.log('Start Button Pressed');
-    generatePageTwo();
-  });
-}
-
+// get data from api, custom fit for wger data at the moment
 function getDataFromApi(endpoint,callback){
 
     const params={
@@ -73,11 +77,14 @@ function getDataFromApi(endpoint,callback){
 /*******************************************************************
  * MUSCLE FUNCTIONS
  * 
- * wgerMuscleCallBack(data)
+ * wgerMuscleCallBack(data) // muscle callback function to initiate the muscle list compilations
  * 
- * generateMuscleList(results)
+ * generateMuscleList(results) //generates the muscle list dynamically
  * 
- * function muscleListOnHover()
+ * function muscleListOnHover(results) //image event when an item on the list is hovered over
+ *
+ * function onClickSubmit()    //muscle list form submit
+ *
  * 
  ********************************************************/
 /*const allData=[];
@@ -86,7 +93,7 @@ window.allData=allData;
 //allData.push(data);
 
 
-
+// muscle callback function to initiate the muscle list compilations
 function wgerMuscleCallBack(data){
   console.log('wgerCallBackSuccess ran');
   console.log(data);
@@ -94,14 +101,14 @@ function wgerMuscleCallBack(data){
   
 }
 
+//generates the muscle list dynamically
 function generateMuscleList(results){
 
   let htmlCodeToAppendFront=[];
   let htmlCodeToAppendBack=[];
 
   $('#row-one.col-4').append(`
-    <div id="muscle-image"></div>     ///YOUR HEREEEEEE
-
+    <div id="muscle-image"></div>     
     `);
 
   for(let i=0;i<results.length;i++){
@@ -129,7 +136,7 @@ function generateMuscleList(results){
         <form id="muscle-form">
         <legend>
           <h2>Choose muscles</h2>
-          <p>Select up to 3 for best results</p>
+          <p>Select up to 3 for most precise results</p>
         </legend>
           <ul id="js-muscle-list">
             <li>Front
@@ -150,7 +157,7 @@ function generateMuscleList(results){
 
 }
 
-
+//image event when an item on the list is hovered over
 function muscleListOnHover(results){
   results.forEach(function(item){
     $(`li[id='${item.id}']`).hover(function(){//mouseOver event
@@ -171,7 +178,7 @@ function muscleListOnHover(results){
 
 }
 
-
+//muscle list form submit
 function onClickSubmit(){
   $('main').on('submit','#muscle-form','#muscle-button',function(event){
     event.preventDefault();
@@ -197,7 +204,21 @@ function onClickSubmit(){
   findExerciseMatch(dataName);  
   });
 }
-
+/*******************************************************************
+ * EXERCISE LIST FUNCTIONS
+ * 
+ * function findExerciseMatch(dataName) //find the exercises that target the selected muscles(dataName variable)
+ * 
+ * function renderExercises(ratingArr,maxMuscleNum) //render exercise list 
+ * 
+ * function onClickExercise() //exercise item onClick events
+ *
+ * function onClickExitExercise() //exit exercise pop out
+ *
+ * function renderExercisePage() //shows pop out information for the 
+ * 
+ ********************************************************/
+//find the exercises that target the selected muscles(dataName variable)
 function findExerciseMatch(dataName){
 
 //loop through muscle and muscle secondary and see if each element is inside dataname 
@@ -242,7 +263,9 @@ function findExerciseMatch(dataName){
   renderExercises(arr,dataName.length);
 
 }
-  
+
+
+//render exercise list  
 function renderExercises(ratingArr,maxMuscleNum){
 
   let html=[];
@@ -278,6 +301,7 @@ function renderExercises(ratingArr,maxMuscleNum){
 
 }
 
+//exercise item onClick events
 function onClickExercise(){   //nodal comes up
   $('main').on('click','.exercise',function(){
     let exerciseName=$(this).text();
@@ -288,6 +312,7 @@ function onClickExercise(){   //nodal comes up
       $('#exercise-page .description').html(`
       <h1>${exerciseName}</h1>
       ${description}
+      <a href="https://www.youtube.com/results?search_query=${exerciseName}+workout" target="_blank">Youtube Search Exercise</a>
       `);
       console.log(result);
       renderExercisePage();
@@ -303,6 +328,7 @@ function onClickExitExercise(){
   });
 }
 
+//shows pop out information for the 
 function renderExercisePage(){
   $('#exercise-page').toggleClass('show')
   
