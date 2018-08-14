@@ -9,17 +9,55 @@ const giphyEndpoint='https://api.giphy.com/v1/gifs/';
 
 function mainFunction(){
 
-  getDataFromApi(wgerMuscleEndpoint,wgerMuscleCallBack);
+  generatePageOne();
+  //generatePageTwo();  
 
   onClickSubmit(); //random testing button to get data and understand it
 
   onClickExercise();
 
   onClickExitExercise();
+
+  onClickStart();
+
 }
 $(mainFunction);
 
+function generatePageOne(){
+  $('#row-one').html(`
+    <div id=intro class="col-12">
+    <h2>Welcome to Muscle Mojo!</h2>
+    <p>The site where you select your desired muscle groups to target and learn what exercises work the best for your routine!</p>
+    <img src="Flexing.png" alt="muscle man">
+    <p>WARNING! All of the suggested exercises are user logged, therefore some are in German or incomplete :)</p>
+    <!--<button id="start-button">Start</button>-->
+    <button id="start-button" class="button">
+      Start
+      <div class="__horizontal"></div>
+      <div class="__vertical"></div>
+    </button>
+    </div>
+    `);
 
+}
+
+function generatePageTwo(){
+  $('#intro').remove();
+  $('#row-one').html(`
+      <div class="col-4">
+        <div id="muscle-image"></div> 
+      </div>
+    `);
+  getDataFromApi(wgerMuscleEndpoint,wgerMuscleCallBack);
+  //generateMuscleList(data.results);  
+}
+
+function onClickStart(){
+  $('main').on('click','#start-button',function(){
+    console.log('Start Button Pressed');
+    generatePageTwo();
+  });
+}
 
 function getDataFromApi(endpoint,callback){
 
@@ -61,6 +99,11 @@ function generateMuscleList(results){
   let htmlCodeToAppendFront=[];
   let htmlCodeToAppendBack=[];
 
+  $('#row-one.col-4').append(`
+    <div id="muscle-image"></div>     ///YOUR HEREEEEEE
+
+    `);
+
   for(let i=0;i<results.length;i++){
     if(results[i].is_front){
       htmlCodeToAppendFront.push(`
@@ -84,7 +127,10 @@ function generateMuscleList(results){
   $('#row-one').append(`
       <div class="col-4">
         <form id="muscle-form">
-        <legend><h2>Choose 3 muscles</h2></legend>
+        <legend>
+          <h2>Choose muscles</h2>
+          <p>Select up to 3 for best results</p>
+        </legend>
           <ul id="js-muscle-list">
             <li>Front
               <ul id="front-muscle-list"></ul>
@@ -100,7 +146,7 @@ function generateMuscleList(results){
   $('#back-muscle-list').append(htmlCodeToAppendBack);
   
 
-  //muscleListOnHover(results);
+  muscleListOnHover(results);
 
 }
 
@@ -204,6 +250,7 @@ function renderExercises(ratingArr,maxMuscleNum){
   $('#exercise-section').empty();
   $('#row-one').append(`<div class="col-4" id=exercise-section>
   <h2>Target Area Exercises</h2>
+  <p>Red: Targets every selected muscle</p>
   <ul id="exercise-list"></ul>
   </div>`
   );
@@ -216,7 +263,7 @@ function renderExercises(ratingArr,maxMuscleNum){
   console.log(ratingArr);
 
 
-  for(let i=0;i<20;i++){  //show the best match only
+  for(let i=0;i<10;i++){  //show the best match only
     console.log(ratingArr[i]);
     if(ratingArr[i].rating===maxMuscleNum){
       html.push(`<li class="exercise red" data-description="${ratingArr[i].exercise.description}">${ratingArr[i].exercise.name}</li>`);

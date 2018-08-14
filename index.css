@@ -3,6 +3,7 @@
 
 }
 
+
 ul{
     list-style-type: none;
   }
@@ -21,6 +22,7 @@ li{
     background-repeat: no-repeat; 
     position: relative;
     top: 40px;
+    margin: auto;
 }
 
 li.exercise.red{
@@ -46,12 +48,33 @@ li.red:last-child:after {
     display: block;
 }*/
 
+
 #header-col > h1{
   margin:auto;
+  display:inline;
+  font-family: 'Permanent Marker', cursive;
 }
 
 header{
-  background-color: orange;
+  background-color: #0069ffd6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#intro>img {
+    width: 450px;
+    margin: auto;
+    display: block;
+}
+
+#intro>p,
+#intro>h2{
+  text-align: center;
+}
+
+#intro>button{
+  margin: auto;
+  display: block;
 }
 
 #exercise-page{
@@ -95,4 +118,17 @@ width="100%" height="100%" style="position:absolute"
   float:right;
   font-size: 24px;
   padding: 7px;
+}
+
+.fa-dumbbell{
+  display:inline;
+  font-size:30px;
+  padding:7px;
+  color:white;
+}
+
+#exercise-section > p,
+#muscle-form>legend>p {
+    font-style: italic;
+    font-size: 13px;
 }
