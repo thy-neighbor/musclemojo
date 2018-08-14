@@ -49,6 +49,7 @@ li.red:last-child:after {
 }*/
 
 
+
 #header-col > h1{
   margin:auto;
   display:inline;
@@ -131,4 +132,10 @@ width="100%" height="100%" style="position:absolute"
 #muscle-form>legend>p {
     font-style: italic;
     font-size: 13px;
+}
+
+.description{
+  display: block;
+  margin: auto;
+  text-align: center;
 }

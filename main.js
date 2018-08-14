@@ -20,6 +20,8 @@ function mainFunction(){
 
   onClickStart(); //start button on page one, simple navigation
 
+  onKeypressExercise();
+
 }
 $(mainFunction);
 
@@ -34,8 +36,8 @@ function generatePageOne(){
     <!--<button id="start-button">Start</button>-->
     <button id="start-button" class="button">
       Start
-      <div class="__horizontal"></div>
-      <div class="__vertical"></div>
+      <div class="button__horizontal"></div>
+      <div class="button__vertical"></div>
     </button>
     </div>
     `);
@@ -181,6 +183,7 @@ function muscleListOnHover(results){
 //muscle list form submit
 function onClickSubmit(){
   $('main').on('submit','#muscle-form','#muscle-button',function(event){
+    $()
     event.preventDefault();
     console.log($('input[name="muscle"]'));
     //console.log($('#muscle-list').children('ul'));
@@ -270,7 +273,7 @@ function renderExercises(ratingArr,maxMuscleNum){
 
   let html=[];
 
-  $('#exercise-section').empty();
+  $('#exercise-section').remove();
   $('#row-one').append(`<div class="col-4" id=exercise-section>
   <h2>Target Area Exercises</h2>
   <p>Red: Targets every selected muscle</p>
@@ -289,10 +292,10 @@ function renderExercises(ratingArr,maxMuscleNum){
   for(let i=0;i<10;i++){  //show the best match only
     console.log(ratingArr[i]);
     if(ratingArr[i].rating===maxMuscleNum){
-      html.push(`<li class="exercise red" data-description="${ratingArr[i].exercise.description}">${ratingArr[i].exercise.name}</li>`);
+      html.push(`<li class="exercise red" data-description="${ratingArr[i].exercise.description}" tabindex="${i+1}">${ratingArr[i].exercise.name}</li>`);
       continue;
     }else if((ratingArr[i].rating<maxMuscleNum)&&(ratingArr[i].rating>0)){
-      html.push(`<li class="exercise" data-description="${ratingArr[i].exercise.description}">${ratingArr[i].exercise.name}</li>`);
+      html.push(`<li class="exercise" data-description="${ratingArr[i].exercise.description}" tabindex="${i+1}">${ratingArr[i].exercise.name}</li>`);
     }
     
   }
@@ -317,9 +320,17 @@ function onClickExercise(){   //nodal comes up
       console.log(result);
       renderExercisePage();
     });
-    
   });
+}
 
+function onKeypressExercise(){
+  $(document).keydown(function(e){
+      if(e.keyCode === 13){
+              console.log(document.activeElement);
+              $(document.activeElement).click();
+              $('#start-buttton').click();
+       }  
+  });
 }
 
 function onClickExitExercise(){
