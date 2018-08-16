@@ -3,7 +3,6 @@
 
 }
 
-
 ul{
     list-style-type: none;
   }
@@ -37,17 +36,6 @@ li.exercise{
 li.exercise:hover{
   text-decoration: underline;
 }
-
-/*li.red:first-child:before {
-    content: "best matches";
-    display: block;
-}
-
-li.red:last-child:after {
-    content: "the rest";
-    display: block;
-}*/
-
 
 
 #header-col > h1{
@@ -100,9 +88,6 @@ header{
   opacity: 1;
 }
 
-/*style="width:100%;height:0;padding-bottom:69%;position:relative;"
-width="100%" height="100%" style="position:absolute"
-*/
 
 .giph iframe{
   width:250px; 

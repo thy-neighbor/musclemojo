@@ -89,10 +89,6 @@ function getDataFromApi(endpoint,callback){
  *
  * 
  ********************************************************/
-/*const allData=[];
-window.allData=allData;
-*/
-//allData.push(data);
 
 
 // muscle callback function to initiate the muscle list compilations
@@ -163,7 +159,6 @@ function generateMuscleList(results){
 function muscleListOnHover(results){
   results.forEach(function(item){
     $(`li[id='${item.id}']`).hover(function(){//mouseOver event
-      //$(this).css({"color":"yellow","font-size":"125%"});
       if(item.is_front){
         $('#muscle-image').css("background-image",`url(https://wger.de/static/images/muscles/main/muscle-${item.id}.svg), 
         url(https://wger.de/static/images/muscles/muscular_system_front.svg)`);        
@@ -172,7 +167,6 @@ function muscleListOnHover(results){
         url(https://wger.de/static/images/muscles/muscular_system_back.svg)`); 
       }
     },function(){//mouseleave event
-      //$(this).css({"color":"black","font-size":"100%"});
       $('#muscle-image').css("background-image",`
       url(https://wger.de/static/images/muscles/muscular_system_front.svg)`);
     });
@@ -186,7 +180,6 @@ function onClickSubmit(){
     $()
     event.preventDefault();
     console.log($('input[name="muscle"]'));
-    //console.log($('#muscle-list').children('ul'));
     let answers=$('input[name="muscle"]').filter(function(){
       if(this.checked){
         return(true);
@@ -224,9 +217,6 @@ function onClickSubmit(){
 //find the exercises that target the selected muscles(dataName variable)
 function findExerciseMatch(dataName){
 
-//loop through muscle and muscle secondary and see if each element is inside dataname 
-//dataName  dataname.indexOf(element) > -1
-//and add matchs to an array specifying type 3 2 or 1  
 
   let ratingArray=[];
   let exerciseArray=[];
@@ -234,7 +224,7 @@ function findExerciseMatch(dataName){
 
   data.forEach(function(exercise){ 
     exercise.results.forEach(function(e){ 
-        //console.log(e.name,e.muscles,e.muscles_secondary)
+        
         let obj={exercise:e};
         exerciseArray.push(e);
         let rating=0;
@@ -274,7 +264,9 @@ function renderExercises(ratingArr,maxMuscleNum){
   let html=[];
 
   $('#exercise-section').remove();
-  $('#row-one').append(`<div class="col-4" id=exercise-section>
+  $('#row-one').append(`
+  <!--Exercise Section-->
+  <div class="col-4" id=exercise-section>
   <h2>Target Area Exercises</h2>
   <p>Red: Targets every selected muscle</p>
   <ul id="exercise-list"></ul>
