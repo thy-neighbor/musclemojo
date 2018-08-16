@@ -34,7 +34,7 @@ function generatePageOne(){
     <img src="Flexing.png" alt="muscle man">
     <p>WARNING! All of the suggested exercises are user logged, therefore some are in German or incomplete :)</p>
     <!--<button id="start-button">Start</button>-->
-    <button id="start-button" class="button">
+    <button id="start-button" class="button" >
       Start
       <div class="button__horizontal"></div>
       <div class="button__vertical"></div>
@@ -315,7 +315,7 @@ function onClickExercise(){   //nodal comes up
       $('#exercise-page .description').html(`
       <h1>${exerciseName}</h1>
       ${description}
-      <a href="https://www.youtube.com/results?search_query=${exerciseName}+workout" target="_blank">Youtube Search Exercise</a>
+      <a href="https://www.youtube.com/results?search_query=${exerciseName}+workout" target="_blank" role="link">Youtube Search Exercise</a>
       `);
       console.log(result);
       renderExercisePage();
